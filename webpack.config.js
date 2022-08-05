@@ -7,16 +7,13 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 module.exports = {
     mode: isDevelopment ? 'development' : 'production',
     devtool: isDevelopment ? 'eval-source-map' : 'source-map',
-    entry: PATH.resolve(__dirname, 'src', 'index.jsx'),
+    entry: PATH.resolve(__dirname, 'src', 'index.tsx'),
     output: {
         path: PATH.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
     },
     resolve: {
-        extensions: [
-            '.js',
-            '.jsx',
-        ]
+        extensions: ['.js', '.jsx', '.ts', '.tsx',]
     },
     devServer: {
         static: PATH.resolve(__dirname, 'public'),
@@ -31,7 +28,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx$/,
+                test: /\.(j|t)sx$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
